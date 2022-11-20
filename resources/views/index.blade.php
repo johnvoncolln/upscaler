@@ -104,6 +104,11 @@ ga('send', 'pageview');
 <link href='//fonts.googleapis.com/css?family=Roboto+Slab&amp;subset=latin' rel='stylesheet' type='text/css' />
 </head>
 <body class=" cms-page-view responsive cms-pricing-updates ">
+@if(session('message'))
+<div style="padding:25px; z-index:1000; background-color:green;">
+    {{ session('message') }}
+</div>
+@endif
 <div id="root-wrapper">
 <div class="wrapper">
         <noscript>
@@ -1011,11 +1016,17 @@ ga('send', 'pageview');
                         </li>
                         <li>
                             <label for="file" class="required"></label>
-                            <div class="input-box">
+                            <div class="input-box" style="width:50%;">
                                 <x-media-library-attachment name="file"/>
                             </div>
                         </li>
-                        <button type="submit">Submit</button>
+                        <div class="buttons-set" style="float:left;">
+                            <button class="button" type="Submit" value="Submit">
+                                <span>
+                                    <span>Submit</span>
+                                </span>
+                            </button>
+                        </div>
                     </ul>
 
                 </form>

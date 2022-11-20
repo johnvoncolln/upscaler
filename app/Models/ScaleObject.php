@@ -12,6 +12,8 @@ class ScaleObject extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     public $fillable = [
-        'email'
+        'email',
+        'replicate_id',
+        'replicate_img_url',
     ];
 }

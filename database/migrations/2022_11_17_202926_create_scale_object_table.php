@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('scale_objects', function (Blueprint $table) {
             $table->id();
             $table->string('email');
+            $table->string('replicate_id')->nullable();
+            $table->string('replicate_img_url')->nullable();
             $table->timestamps();
         });
     }
