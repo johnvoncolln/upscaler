@@ -23,6 +23,10 @@ Route::get('/', [ScaleObjectController::class, 'show'])
 Route::post('/store', [ScaleObjectController::class, 'store'])
     ->name('scale.store');
 
-Route::get('/test', function() {
+Route::get('/test', function () {
     return view('test');
+});
+
+Route::get('/bg', function () {
+    return view('bg');
 });

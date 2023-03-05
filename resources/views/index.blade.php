@@ -1011,7 +1011,7 @@ ga('send', 'pageview');
                         <li>
                             <label for="email" class="required"><em>*</em>Email Address</label>
                             <div class="input-box">
-                                <input type="text" name="email" id="email" class="input-text required-entry validate-email" title="Email Address">
+                                <input type="text" name="email" id="email" class="input-text" title="Email Address">
                             </div>
                         </li>
                         <li>

@@ -18,7 +18,7 @@ class ScaleObjectController extends Controller
         // Todo: validation: file type, file size, runs per user per day
 
         $scaleObject = ScaleObject::create([
-            'email' => $request->email
+            'email' => 'john@shortrunposters.com',//$request->email
         ]);
 
         $scaleObject
@@ -26,7 +26,7 @@ class ScaleObjectController extends Controller
             ->toMediaCollection('file', 's3');
 
         $response = Http::withHeaders([
-            'Authorization' => 'Token fe547a148511249ebf5155aaf11f5a8607fd3cb2',
+            'Authorization' => 'Token c1791e28f4fd74307d2b968aa23a312e78a78f82',
         ])->post(
             'https://api.replicate.com/v1/predictions',
             [
@@ -34,11 +34,11 @@ class ScaleObjectController extends Controller
                 'input' => [
                     'img' => $scaleObject->fresh()->getFirstMedia('file')->getUrl(),
                     'version' => 'General - RealESRGANplus',
-                    'scale' => 10,
+                    'scale' => 5,
                     'face_enhance' => false,
-                    'tile '=> 0,
+                    'tile '=> 200,
                 ],
-                'webhook_completed' => 'https://srp.us-1.sharedwithexpose.com/api/webhook',
+                'webhook_completed' => 'https://upscaler.srp.xyz/api/webhook',
             ]
         );
 

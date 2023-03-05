@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\UpscaledImageGenerated;
 use App\Models\ScaleObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Mail\UpscaledImageGenerated;
 use Illuminate\Support\Facades\Mail;
 
 class WebhookController extends Controller
@@ -25,8 +26,10 @@ class WebhookController extends Controller
                 ->addMediaFromUrl($scaleObject->replicate_img_url)
                 ->usingFileName($scaleObject->replicate_id . '-output.' . $ext)
                 ->toMediaCollection('upscaled', 's3');
-
+            // Have check to see if mail has already been sent.
             Mail::to($scaleObject->email)->send(new UpscaledImageGenerated($scaleObject->fresh()));
+        } else {
+            Log::channel('replicate_response')->alert($request);
         }
 
         return response('OK', 200);
